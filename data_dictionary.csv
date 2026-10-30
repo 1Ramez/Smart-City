@@ -1,0 +1,94 @@
+dataset,column,data_type,description,unit,role,nullable,key
+districts.csv,district_id,string,Unique identifier for the district,N/A,Primary Key Component,No,Primary Key
+districts.csv,district_name,string,Name of the district,N/A,Feature,No,No
+districts.csv,district_type,string,Primary zoning type of the district,N/A,Feature,No,No
+districts.csv,area_km2,float,Geographical area of the district,km²,Feature,No,No
+districts.csv,population,int,Total resident population,People,Feature,No,No
+districts.csv,commercial_activity_index,float,Relative scale of commercial business activity,Index,Feature,No,No
+districts.csv,industrial_activity_index,float,Relative scale of industrial operations,Index,Feature,No,No
+districts.csv,green_space_percent,float,Percentage of district covered by parks/greenery,%,Feature,No,No
+districts.csv,road_capacity_index,float,Relative capacity of the district's road network,Index,Feature,No,No
+districts.csv,public_transport_access_index,float,Relative accessibility to public transit,Index,Feature,No,No
+districts.csv,base_electricity_demand_mwh,float,Baseline electrical demand of the district,MWh,Feature,No,No
+districts.csv,temp_offset_c,float,Microclimate temperature offset from city baseline,°C,Feature,No,No
+districts.csv,wind_multiplier,float,Microclimate wind speed scaling factor,Multiplier,Feature,No,No
+districts.csv,population_density,float,Population per square kilometer,People/km²,Feature,No,No
+districts.csv,grid_capacity_mwh,float,Maximum rated electrical supply capacity,MWh,Feature,No,No
+city_events.csv,event_id,string,Unique identifier for the public event,N/A,Primary Key Component,No,Primary Key
+city_events.csv,event_name,string,Name of the event,N/A,Feature,No,No
+city_events.csv,event_type,string,Categorical type of the event,N/A,Feature,No,No
+city_events.csv,district_id,string,District where the event occurs,N/A,Feature,No,Foreign Key
+city_events.csv,start_timestamp,datetime,Timestamp when the event begins,N/A,Feature,No,No
+city_events.csv,end_timestamp,datetime,Timestamp when the event concludes,N/A,Feature,No,No
+city_events.csv,expected_attendance,int,Forecasted number of attendees,People,Feature,No,No
+city_events.csv,actual_attendance,int,Realized number of attendees,People,Feature,No,No
+city_events.csv,event_impact_level,string,Categorical magnitude of the event's systemic impact,N/A,Feature,No,No
+weather.csv,timestamp,datetime,Hourly observation time,N/A,Primary Key Component,No,Logical Key
+weather.csv,district_id,string,Unique identifier for the district,N/A,Primary Key Component,No,Logical Key / Foreign Key
+weather.csv,temperature_c,float,Ambient temperature in Celsius,°C,Feature,Yes,No
+weather.csv,feels_like_c,float,Perceived temperature in Celsius,°C,Feature,Yes,No
+weather.csv,humidity_percent,float,Relative humidity,%,Feature,Yes,No
+weather.csv,rainfall_mm,float,Hourly rainfall volume,mm,Feature,Yes,No
+weather.csv,wind_speed_kmh,float,Wind speed in kilometers per hour,km/h,Feature,Yes,No
+weather.csv,cloud_cover_percent,float,Percentage of sky occluded by clouds,%,Feature,Yes,No
+weather.csv,weather_condition,string,Categorical weather descriptor,N/A,Feature,Yes,No
+weather.csv,heatwave_flag,int,Binary flag indicating a persistent heatwave episode,0/1,Feature,No,No
+weather.csv,heavy_rain_flag,int,Binary flag indicating torrential downpour,0/1,Feature,No,No
+weather.csv,storm_flag,int,Binary flag indicating a severe multi-hour storm,0/1,Feature,No,No
+weather.csv,sensor_status,string,Operational status of the telemetry array,N/A,Feature,No,No
+traffic.csv,timestamp,datetime,Hourly observation time,N/A,Primary Key Component,No,Logical Key
+traffic.csv,district_id,string,Unique identifier for the district,N/A,Primary Key Component,No,Logical Key / Foreign Key
+traffic.csv,traffic_volume,int,Count of vehicles passed,Vehicles,Feature,Yes,No
+traffic.csv,average_speed_kmh,float,Average speed of traffic flow,km/h,Feature,Yes,No
+traffic.csv,congestion_index,float,Normalized congestion metric,Index,Feature,Yes,No
+traffic.csv,accident_count,int,Count of recorded vehicle accidents,Count,Feature/Leakage,Yes,No
+traffic.csv,accident_flag,int,Binary flag indicating >= 1 accident occurred,0/1,Target,No,No
+traffic.csv,road_incident_count,int,Count of road incidents including non-accident obstructions,Count,Feature/Leakage,Yes,No
+traffic.csv,rush_hour_flag,int,Binary flag indicating traditional commuting rush hour,0/1,Feature,Yes,No
+traffic.csv,weekend_flag,int,Binary flag indicating Saturday/Sunday,0/1,Feature,Yes,No
+traffic.csv,weather_impact_score,float,Multiplier effect of adverse weather on traffic,Multiplier,Feature,Yes,No
+traffic.csv,special_event_impact,float,Multiplier effect of local city events on traffic,Multiplier,Feature,Yes,No
+traffic.csv,sensor_status,string,Operational status of the traffic camera/sensor array,N/A,Feature,No,No
+power_grid.csv,timestamp,datetime,Hourly observation time,N/A,Primary Key Component,No,Logical Key
+power_grid.csv,district_id,string,Unique identifier for the district,N/A,Primary Key Component,No,Logical Key / Foreign Key
+power_grid.csv,electricity_demand_mwh,float,Total electricity consumption in District,MWh,Feature,Yes,No
+power_grid.csv,grid_capacity_mwh,float,Maximum rated supply capacity for the district,MWh,Feature,Yes,No
+power_grid.csv,solar_generation_mwh,float,Electricity generated from district solar arrays,MWh,Feature,Yes,No
+power_grid.csv,wind_generation_mwh,float,Electricity generated from district wind turbines,MWh,Feature,Yes,No
+power_grid.csv,total_renewable_generation_mwh,float,Sum of localized solar and wind generation,MWh,Feature,Yes,No
+power_grid.csv,renewable_generation_percent,float,Percentage of demand met by localized renewables,%,Feature,Yes,No
+power_grid.csv,grid_load_percent,float,Demand divided by Capacity,%,Feature,Yes,No
+power_grid.csv,grid_stress_index,float,Non-linear metric representing operational stress (Leakage risk),Index,Feature/Leakage,Yes,No
+power_grid.csv,outage_flag,int,Binary flag indicating a rolling blackout / outage occurred,0/1,Target,No,No
+power_grid.csv,outage_duration_minutes,int,Length of the blackout (if outage_flag = 1),Minutes,Feature,Yes,No
+power_grid.csv,sensor_status,string,Operational status of the smart grid meters,N/A,Feature,No,No
+air_quality.csv,timestamp,datetime,Hourly observation time,N/A,Primary Key Component,No,Logical Key
+air_quality.csv,district_id,string,Unique identifier for the district,N/A,Primary Key Component,No,Logical Key / Foreign Key
+air_quality.csv,pm25,float,Particulate matter <2.5 micrometers,µg/m³,Feature,Yes,No
+air_quality.csv,pm10,float,Particulate matter <10 micrometers,µg/m³,Feature,Yes,No
+air_quality.csv,no2,float,Nitrogen Dioxide concentration,ppb,Feature,Yes,No
+air_quality.csv,o3,float,Ground-level Ozone concentration,ppb,Feature,Yes,No
+air_quality.csv,co,float,Carbon Monoxide concentration,ppm,Feature,Yes,No
+air_quality.csv,synthetic_aqi,int,Custom composite ML air quality index,Index,Feature/Target,Yes,No
+air_quality.csv,air_quality_category,string,Categorical bucket for the synthetic AQI,N/A,Feature,Yes,No
+air_quality.csv,pollution_alert_flag,int,Binary flag indicating synthetic_aqi exceeded safe limits,0/1,Target,No,No
+air_quality.csv,sensor_status,string,Operational status of the air quality environmental sensors,N/A,Feature,No,No
+public_transport.csv,timestamp,datetime,Hourly observation time,N/A,Primary Key Component,No,Logical Key
+public_transport.csv,district_id,string,Unique identifier for the district,N/A,Primary Key Component,No,Logical Key / Foreign Key
+public_transport.csv,passenger_count,int,Total ridership count during the hour,People,Feature,Yes,No
+public_transport.csv,service_frequency,int,Scheduled time between transit vehicles,Minutes,Feature,Yes,No
+public_transport.csv,average_delay_minutes,float,Average arrival delay across the network,Minutes,Feature,Yes,No
+public_transport.csv,vehicle_occupancy_percent,float,Average physical fullness of transit vehicles,%,Feature,Yes,No
+public_transport.csv,service_disruption_flag,int,Binary flag indicating severe operational breakdown,0/1,Target,No,No
+public_transport.csv,sensor_status,string,Operational status of the transit telemetry system,N/A,Feature,No,No
+emergency_events.csv,event_id,string,Unique dispatch ID,N/A,Primary Key,No,Primary Key
+emergency_events.csv,timestamp,datetime,Exact minute-level dispatch time,N/A,Feature,No,No
+emergency_events.csv,district_id,string,Unique identifier for the district where dispatch occurred,N/A,Feature,No,Foreign Key
+emergency_events.csv,emergency_type,string,Categorical type of the emergency call,N/A,Feature,No,No
+emergency_events.csv,severity_level,string,"Triage priority (Low, Medium, High, Critical)",N/A,Feature,No,No
+emergency_events.csv,response_time_minutes,float,Time elapsed between dispatch and unit arrival,Minutes,Target,No,No
+emergency_events.csv,ambulance_required,int,Binary flag indicating EMS dispatch requirement,0/1,Feature,No,No
+emergency_events.csv,hospital_transport_required,int,Binary flag indicating patient was moved to a medical facility,0/1,Feature,No,No
+emergency_events.csv,weather_related_flag,int,Binary flag indicating emergency was caused by meteorology,0/1,Feature,No,No
+emergency_events.csv,traffic_related_flag,int,Binary flag indicating emergency involved a vehicle collision,0/1,Feature,No,No
+emergency_events.csv,outcome,string,Final resolution of the emergency response,N/A,Feature,No,No
